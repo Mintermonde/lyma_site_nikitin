@@ -1,0 +1,14 @@
+{
+  "name": "lyma-wellness-site",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "npm --prefix vite-project run dev",
+    "build": "npm --prefix vite-project run build"
+  },
+  "dependencies": {
+    "react-router-dom": "^7.18.4",
+    "sass": "^1.105.2",
+    "swiper": "^14.3.0"
+  }
+}

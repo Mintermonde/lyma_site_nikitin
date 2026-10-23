@@ -1,0 +1,1521 @@
+// =============================================================================
+// SCSS VARIABLES ($)
+// =============================================================================
+$color_dark_surface: #000000;
+$color_light_surface: #ffffff;
+$color_text_pure_white: #ffffff;
+$color_text_light_muted: #e6e6e6;
+$color_text_graphite: #7e7e7e;
+$color_text_charcoal: #666666;
+$color_text_neutral_link: #808080;
+
+$font_family_site: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+$width_viewport_full: 100vw;
+$width_navbar_menu: 466px;
+$height_navbar_menu: 55px;
+$width_hero_panel: 856px;
+$width_showcase_item: 945px;
+$height_showcase_item: 515px;
+$width_product_container: 668px;
+$width_innovation_container: 754px;
+$width_founder_content: 417px;
+$width_footer_nav: 699px;
+$width_footer_subscribe: 466px;
+
+$breakpoint_wide_desktop: 1600px;
+$breakpoint_medium_tablet: 900px;
+$breakpoint_small_phone: 500px;
+
+
+// =============================================================================
+// SCSS MIXINS (@mixin)
+// =============================================================================
+@mixin flex_positioning($direction: row, $justify: center, $align: center, $gap_spacing: 0px) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap_spacing;
+}
+
+@mixin heading_typography($font_size_val: 38px, $font_weight_val: 400, $letter_spacing_val: 1px) {
+  font: {
+    family: $font_family_site;
+    size: $font_size_val;
+    weight: $font_weight_val;
+  }
+  letter-spacing: $letter_spacing_val;
+  text: {
+    transform: uppercase;
+    align: center;
+  }
+}
+
+@mixin action_outline_btn($border_color_val: $color_text_pure_white, $text_color_val: $color_text_pure_white) {
+  cursor: pointer;
+  outline: none;
+  background: {
+    color: transparent;
+  }
+  border: {
+    width: 0.5px;
+    style: solid;
+    color: $border_color_val;
+  }
+  color: $text_color_val;
+
+  &:focus,
+  &:active {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+
+// =============================================================================
+// SCSS PLACEHOLDERS / EXTENDS (%)
+// =============================================================================
+%full_screen_block {
+  width: $width_viewport_full;
+  box-sizing: border-box;
+}
+
+%centered_column_flow {
+  @include flex_positioning(column, space-between, center);
+}
+
+%clean_list_structure {
+  list-style: none;
+  padding: {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+  margin: {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+}
+
+%interactive_anchor {
+  cursor: pointer;
+  text: {
+    decoration: none;
+  }
+  transition: opacity 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    opacity: 0.75;
+  }
+}
+
+
+// =============================================================================
+// 1. HEADER
+// =============================================================================
+.header_root {
+  width: 100%;
+  min-height: 85px;
+  background: {
+    color: $color_light_surface;
+  }
+  @include flex_positioning(row, center, center);
+
+  .header_nav_wrapper {
+    width: 90vw;
+    min-height: 55px;
+    @include flex_positioning(row, space-between, center);
+
+    .header_brand_box {
+      .header_brand_logo {
+        height: 22px;
+        width: auto;
+        display: block;
+      }
+    }
+
+    .header_menu_left {
+      width: $width_navbar_menu;
+      height: $height_navbar_menu;
+      @include flex_positioning(row, center, center);
+
+      .header_menu_list {
+        @extend %clean_list_structure;
+        width: 400px;
+        height: 55px;
+        @include flex_positioning(row, space-between, center);
+
+        .header_menu_item {
+          .header_menu_link {
+            @extend %interactive_anchor;
+            color: $color_text_neutral_link;
+            white-space: nowrap;
+            letter-spacing: 0.8px;
+            font: {
+              size: 14px;
+              weight: 400;
+              family: $font_family_site;
+            }
+            text: {
+              transform: uppercase;
+            }
+
+            &:hover {
+              color: $color_dark_surface;
+            }
+          }
+        }
+      }
+    }
+
+    .header_menu_right {
+      width: $width_navbar_menu;
+      height: $height_navbar_menu;
+      @include flex_positioning(row, center, center);
+
+      .header_menu_list {
+        @extend %clean_list_structure;
+        width: 400px;
+        height: 55px;
+        @include flex_positioning(row, space-between, center);
+
+        .header_menu_item {
+          .header_menu_link {
+            @extend %interactive_anchor;
+            color: $color_text_neutral_link;
+            white-space: nowrap;
+            letter-spacing: 0.8px;
+            font: {
+              size: 14px;
+              weight: 400;
+              family: $font_family_site;
+            }
+            text: {
+              transform: uppercase;
+            }
+
+            &:hover {
+              color: $color_dark_surface;
+            }
+          }
+
+          .header_action_btn {
+            width: 64px;
+            height: 23px;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            color: $color_text_pure_white;
+            letter-spacing: 1px;
+            background: {
+              color: $color_dark_surface;
+            }
+            font: {
+              size: 12px;
+              weight: 500;
+              family: $font_family_site;
+            }
+            text: {
+              transform: uppercase;
+            }
+
+            &:focus,
+            &:active {
+              outline: none;
+              box-shadow: none;
+            }
+          }
+        }
+      }
+    }
+
+    // Header Responsive Queries
+    @media (max-width: $breakpoint_wide_desktop) {
+      .header_menu_left,
+      .header_menu_right {
+        width: auto;
+        max-width: $width_navbar_menu;
+
+        .header_menu_list {
+          width: auto;
+          gap: 15px;
+        }
+      }
+    }
+
+    @media (max-width: $breakpoint_medium_tablet) {
+      width: 95vw;
+      gap: 10px;
+
+      .header_menu_left,
+      .header_menu_right {
+        width: auto;
+
+        .header_menu_list {
+          width: auto;
+          gap: 8px;
+
+          .header_menu_item {
+            .header_menu_link {
+              font: {
+                size: 12px;
+              }
+            }
+
+            .header_action_btn {
+              width: 58px;
+              height: 22px;
+              font: {
+                size: 12px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    @media (max-width: $breakpoint_small_phone) {
+      flex-direction: column;
+      width: 90%;
+      height: auto;
+      gap: 20px;
+      padding: {
+        top: 20px;
+        bottom: 20px;
+      }
+
+      .header_menu_left,
+      .header_menu_right {
+        width: 100%;
+        height: auto;
+
+        .header_menu_list {
+          flex-direction: column;
+          width: 100%;
+          height: auto;
+          gap: 12px;
+
+          .header_menu_item {
+            .header_menu_link {
+              font: {
+                size: 14px;
+              }
+            }
+
+            .header_action_btn {
+              width: 100%;
+              max-width: 220px;
+              height: 34px;
+              font: {
+                size: 14px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// =============================================================================
+// 2. ОСТАЛЬНЫЕ БЛОКИ
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// 2.1 Hero Section
+// -----------------------------------------------------------------------------
+.hero_section {
+  @extend %full_screen_block;
+  height: 800px;
+  @include flex_positioning(row, center, center);
+  background: {
+    repeat: no-repeat;
+    size: cover;
+    position: center;
+    image: url('../assets/hero_landscape_bg.png');
+  }
+
+  .hero_container {
+    @extend %centered_column_flow;
+    width: $width_hero_panel;
+    height: 286px;
+
+    .hero_main_title {
+      @include heading_typography(57px, 400, 1.5px);
+      color: $color_text_pure_white;
+      margin: {
+        bottom: 10px;
+      }
+    }
+
+    .hero_subtitle_text {
+      color: $color_text_pure_white;
+      line-height: 1.4;
+      font: {
+        size: 26px;
+        weight: 300;
+        family: $font_family_site;
+      }
+      text: {
+        align: center;
+      }
+      margin: {
+        bottom: 20px;
+      }
+    }
+
+    .hero_buttons_group {
+      width: 450px;
+      height: 36px;
+      @include flex_positioning(row, space-between, center);
+
+      .hero_cta_button {
+        @include action_outline_btn($color_text_pure_white, $color_text_pure_white);
+        width: 215px;
+        height: 36px;
+        letter-spacing: 1px;
+        font: {
+          size: 13px;
+          weight: 400;
+          family: $font_family_site;
+        }
+        text: {
+          transform: uppercase;
+        }
+      }
+    }
+  }
+
+  // Hero Responsive Queries
+  @media (max-width: $breakpoint_wide_desktop) {
+    height: 700px;
+    padding: {
+      left: 40px;
+      right: 40px;
+    }
+
+    .hero_container {
+      max-width: 800px;
+      width: 100%;
+
+      .hero_main_title {
+        font: {
+          size: 48px;
+        }
+      }
+
+      .hero_subtitle_text {
+        font: {
+          size: 22px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint_medium_tablet) {
+    height: auto;
+    padding: {
+      top: 80px;
+      bottom: 80px;
+      left: 20px;
+      right: 20px;
+    }
+
+    .hero_container {
+      width: 100%;
+      height: auto;
+      gap: 20px;
+
+      .hero_main_title {
+        font: {
+          size: 38px;
+        }
+      }
+
+      .hero_subtitle_text {
+        font: {
+          size: 18px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint_small_phone) {
+    padding: {
+      top: 60px;
+      bottom: 60px;
+      left: 15px;
+      right: 15px;
+    }
+
+    .hero_container {
+      .hero_main_title {
+        font: {
+          size: 28px;
+        }
+      }
+
+      .hero_subtitle_text {
+        font: {
+          size: 15px;
+        }
+      }
+
+      .hero_buttons_group {
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+        gap: 12px;
+
+        .hero_cta_button {
+          width: 100%;
+          max-width: 260px;
+          height: 42px;
+        }
+      }
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// 2.2 Split Showcase Section
+// -----------------------------------------------------------------------------
+.split_showcase_section {
+  @extend %full_screen_block;
+  height: 550px;
+  @include flex_positioning(row, center, center);
+
+  .split_container {
+    width: $width_viewport_full;
+    height: $height_showcase_item;
+    @include flex_positioning(row, space-between, center);
+
+    .split_card_left,
+    .split_card_right {
+      width: $width_showcase_item;
+      height: $height_showcase_item;
+      @include flex_positioning(row, center, flex-end);
+      background: {
+        repeat: no-repeat;
+        size: cover;
+        position: center;
+      }
+
+      .split_card_content {
+        width: 270px;
+        height: 160px;
+        @include flex_positioning(column, space-around, center);
+        color: $color_text_pure_white;
+        margin: {
+          bottom: 10px;
+        }
+
+        .split_card_title {
+          font: {
+            size: 34px;
+            weight: 400;
+            family: $font_family_site;
+          }
+        }
+
+        .split_card_description {
+          font: {
+            size: 16px;
+            weight: 300;
+            family: $font_family_site;
+          }
+          text: {
+            align: center;
+          }
+        }
+
+        .split_action_links {
+          width: 254px;
+          height: 20px;
+          @include flex_positioning(row, space-between, center);
+
+          .split_action_link {
+            @extend %interactive_anchor;
+            color: $color_text_pure_white;
+            letter-spacing: 1.5px;
+            font: {
+              size: 14px;
+              weight: 500;
+              family: $font_family_site;
+            }
+            text: {
+              transform: uppercase;
+            }
+          }
+        }
+      }
+    }
+
+    .split_card_left {
+      background: {
+        image: url('../assets/supplement_showcase_bg.png');
+      }
+    }
+
+    .split_card_right {
+      background: {
+        image: url('../assets/laser_showcase_bg.png');
+      }
+    }
+  }
+
+  // Split Showcase Responsive Queries
+  @media (max-width: $breakpoint_wide_desktop) {
+    width: 100%;
+    height: auto;
+
+    .split_container {
+      width: 100%;
+      height: auto;
+
+      .split_card_left,
+      .split_card_right {
+        width: 50%;
+        height: 450px;
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint_medium_tablet) {
+    height: auto;
+
+    .split_container {
+      flex-direction: column;
+      gap: 20px;
+
+      .split_card_left,
+      .split_card_right {
+        width: 100%;
+        height: 400px;
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint_small_phone) {
+    .split_container {
+      gap: 15px;
+
+      .split_card_left,
+      .split_card_right {
+        height: 320px;
+
+        .split_card_content {
+          width: 90%;
+          margin: {
+            bottom: 20px;
+          }
+
+          .split_card_title {
+            font: {
+              size: 26px;
+            }
+          }
+
+          .split_card_description {
+            font: {
+              size: 14px;
+            }
+          }
+
+          .split_action_links {
+            width: 200px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// 2.3 Product Overview Section
+// -----------------------------------------------------------------------------
+.product_overview_section {
+  @extend %full_screen_block;
+  height: 730px;
+  @include flex_positioning(row, center, center);
+  background: {
+    color: $color_dark_surface;
+  }
+
+  .product_overview_container {
+    width: $width_product_container;
+    height: 578px;
+    @include flex_positioning(column, space-around, center);
+    color: $color_text_pure_white;
+    text: {
+      align: center;
+    }
+
+    .product_heading_title {
+      @include heading_typography(38px, 400, 1.5px);
+    }
+
+    .product_image_preview {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .product_description_text {
+      color: $color_text_light_muted;
+      line-height: 1.6;
+      font: {
+        size: 18px;
+        weight: 300;
+        family: $font_family_site;
+      }
+    }
+  }
+
+  // Product Overview Responsive Queries
+  @media (max-width: $breakpoint_wide_desktop) {
+    width: 100%;
+    height: auto;
+    padding: {
+      top: 60px;
+      bottom: 60px;
+      left: 20px;
+      right: 20px;
+    }
+
+    .product_overview_container {
+      height: auto;
+      gap: 25px;
+
+      .product_image_preview {
+        max-width: 100%;
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint_medium_tablet) {
+    padding: {
+      top: 50px;
+      bottom: 50px;
+      left: 20px;
+      right: 20px;
+    }
+
+    .product_overview_container {
+      width: 90%;
+
+      .product_heading_title {
+        font: {
+          size: 30px;
+        }
+      }
+
+      .product_description_text {
+        font: {
+          size: 16px;
+        }
+      }
+
+      .product_image_preview {
+        max-width: 280px;
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint_small_phone) {
+    padding: {
+      top: 40px;
+      bottom: 40px;
+      left: 15px;
+      right: 15px;
+    }
+
+    .product_overview_container {
+      width: 100%;
+      gap: 20px;
+
+      .product_heading_title {
+        font: {
+          size: 24px;
+        }
+      }
+
+      .product_description_text {
+        font: {
+          size: 14px;
+        }
+      }
+
+      .product_image_preview {
+        max-width: 200px;
+      }
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// 2.4 Scientific Innovation Banner
+// -----------------------------------------------------------------------------
+.innovation_banner_section {
+  @extend %full_screen_block;
+  height: 800px;
+  @include flex_positioning(row, center, center);
+  background: {
+    color: $color_light_surface;
+  }
+
+  .innovation_inner_wrapper {
+    width: $width_viewport_full;
+    height: 770px;
+    @include flex_positioning(row, center, center);
+    background: {
+      repeat: no-repeat;
+      size: cover;
+      position: center;
+      image: url('../assets/innovation_banner_bg.png');
+    }
+
+    .innovation_content_block {
+      @extend %centered_column_flow;
+      width: $width_innovation_container;
+      height: 152px;
+      color: $color_text_pure_white;
+      text: {
+        align: center;
+      }
+
+      .innovation_main_heading {
+        @include heading_typography(38px, 400, 1.5px);
+        margin: {
+          bottom: 10px;
+        }
+      }
+
+      .innovation_buttons_wrap {
+        width: 450px;
+        height: 36px;
+        @include flex_positioning(row, space-between, center);
+
+        .innovation_action_btn {
+          @include action_outline_btn($color_text_pure_white, $color_text_pure_white);
+          width: 215px;
+          height: 36px;
+          letter-spacing: 1px;
+          font: {
+            size: 13px;
+            weight: 400;
+            family: $font_family_site;
+          }
+          text: {
+            transform: uppercase;
+          }
+        }
+      }
+    }
+  }
+
+  // Innovation Responsive Queries
+  @media (max-width: $breakpoint_wide_desktop) {
+    width: 100%;
+    height: 650px;
+
+    .innovation_inner_wrapper {
+      width: 100%;
+      height: 100%;
+
+      .innovation_content_block {
+        max-width: 700px;
+        width: 90%;
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint_medium_tablet) {
+    height: auto;
+    min-height: 500px;
+
+    .innovation_inner_wrapper {
+      height: auto;
+      min-height: 500px;
+      padding: {
+        top: 60px;
+        bottom: 60px;
+        left: 20px;
+        right: 20px;
+      }
+
+      .innovation_content_block {
+        width: 100%;
+        height: auto;
+        gap: 30px;
+
+        .innovation_main_heading {
+          font: {
+            size: 30px;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint_small_phone) {
+    min-height: 450px;
+
+    .innovation_inner_wrapper {
+      padding: {
+        top: 50px;
+        bottom: 50px;
+        left: 15px;
+        right: 15px;
+      }
+
+      .innovation_content_block {
+        gap: 24px;
+
+        .innovation_main_heading {
+          font: {
+            size: 24px;
+          }
+        }
+
+        .innovation_buttons_wrap {
+          width: 100%;
+          height: auto;
+          flex-direction: column;
+          gap: 12px;
+
+          .innovation_action_btn {
+            width: 100%;
+            max-width: 250px;
+            height: 42px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// 2.5 Founder Story Section
+// -----------------------------------------------------------------------------
+.founder_story_section {
+  @extend %full_screen_block;
+  height: 530px;
+  @include flex_positioning(row, center, center);
+  background: {
+    repeat: no-repeat;
+    size: cover;
+    position: center left;
+    image: url('../assets/founder_profile_bg.png');
+  }
+
+  .founder_story_container {
+    width: 1200px;
+    height: 300px;
+    @include flex_positioning(row, flex-end, center);
+
+    .founder_text_wrapper {
+      width: $width_founder_content;
+      height: 158px;
+      @include flex_positioning(column, space-between, flex-start);
+
+      .founder_main_heading {
+        color: $color_dark_surface;
+        font: {
+          size: 35px;
+          weight: 400;
+          family: $font_family_site;
+        }
+      }
+
+      .founder_description_text {
+        color: $color_text_charcoal;
+        line-height: 1.5;
+        font: {
+          size: 16px;
+          weight: 300;
+          family: $font_family_site;
+        }
+      }
+
+      .founder_more_link {
+        @extend %interactive_anchor;
+        color: $color_dark_surface;
+        letter-spacing: 1px;
+        border-bottom: 1px solid $color_dark_surface;
+        font: {
+          size: 14px;
+          weight: 500;
+          family: $font_family_site;
+        }
+        text: {
+          transform: uppercase;
+        }
+        padding: {
+          bottom: 2px;
+        }
+      }
+    }
+  }
+
+  // Founder Story Responsive Queries
+  @media (max-width: $breakpoint_wide_desktop) {
+    width: 100%;
+    height: 480px;
+
+    .founder_story_container {
+      width: 90%;
+      height: auto;
+    }
+  }
+
+  @media (max-width: $breakpoint_medium_tablet) {
+    height: auto;
+    min-height: 420px;
+    padding: {
+      top: 50px;
+      bottom: 50px;
+      left: 20px;
+      right: 20px;
+    }
+    background: {
+      position: center;
+    }
+
+    .founder_story_container {
+      width: 100%;
+      justify-content: center;
+
+      .founder_text_wrapper {
+        width: 100%;
+        max-width: 450px;
+        text-align: center;
+        align-items: center;
+        gap: 15px;
+
+        .founder_main_heading {
+          font: {
+            size: 30px;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint_small_phone) {
+    min-height: 380px;
+    padding: {
+      top: 40px;
+      bottom: 40px;
+      left: 15px;
+      right: 15px;
+    }
+
+    .founder_story_container {
+      .founder_text_wrapper {
+        height: auto;
+        gap: 12px;
+
+        .founder_main_heading {
+          font: {
+            size: 24px;
+          }
+        }
+
+        .founder_description_text {
+          font: {
+            size: 14px;
+          }
+        }
+
+        .founder_more_link {
+          font: {
+            size: 13px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// 2.6 Press Reviews Slider Section
+// -----------------------------------------------------------------------------
+.press_reviews_section {
+  @extend %full_screen_block;
+  height: 450px;
+  background: {
+    color: $color_light_surface;
+  }
+  @include flex_positioning(row, center, center);
+
+  .press_reviews_container {
+    width: $width_viewport_full;
+    height: 322px;
+
+    .press_quote_card {
+      width: 495px;
+      height: 222px;
+      @include flex_positioning(column, space-between, center);
+      margin: {
+        left: auto;
+        right: auto;
+      }
+
+      .press_quote_text {
+        color: $color_dark_surface;
+        line-height: 1.4;
+        font: {
+          size: 25px;
+          weight: 400;
+          family: $font_family_site;
+        }
+        text: {
+          align: center;
+        }
+      }
+
+      .press_media_logo {
+        height: 50px;
+        width: auto;
+        max-width: 140px;
+        object-fit: contain;
+        display: block;
+      }
+    }
+  }
+
+  .mySwiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    @include flex_positioning(row, space-evenly, center);
+    text-align: center;
+    font: {
+      size: 18px;
+    }
+  }
+
+  .swiper-pagination-bullet {
+    background: $color_dark_surface;
+    opacity: 0.25;
+    transition: opacity 0.2s ease;
+
+    &.swiper-pagination-bullet-active {
+      opacity: 1;
+    }
+  }
+
+  // Press Reviews Responsive Queries
+  @media (max-width: $breakpoint_wide_desktop) {
+    width: 100%;
+    height: auto;
+    padding: {
+      top: 40px;
+      bottom: 40px;
+    }
+
+    .press_reviews_container {
+      width: 100%;
+      height: auto;
+
+      .press_quote_card {
+        width: 90%;
+        max-width: 450px;
+        height: auto;
+        gap: 20px;
+
+        .press_quote_text {
+          font: {
+            size: 20px;
+          }
+        }
+
+        .press_media_logo {
+          width: 100px;
+          height: 50px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint_medium_tablet) {
+    padding: {
+      top: 30px;
+      bottom: 30px;
+    }
+
+    .press_reviews_container {
+      .press_quote_card {
+        max-width: 380px;
+        gap: 15px;
+
+        .press_quote_text {
+          font: {
+            size: 16px;
+          }
+        }
+
+        .press_media_logo {
+          width: 100px;
+          height: 50px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint_small_phone) {
+    padding: {
+      top: 20px;
+      bottom: 20px;
+    }
+
+    .press_reviews_container {
+      .press_quote_card {
+        width: 100%;
+        max-width: 290px;
+        gap: 12px;
+
+        .press_quote_text {
+          font: {
+            size: 14px;
+          }
+        }
+
+        .press_media_logo {
+          width: 100px;
+          height: 50px;
+        }
+      }
+    }
+
+    .swiper-pagination {
+      bottom: 0px !important;
+    }
+  }
+}
+
+
+// =============================================================================
+// 3. FOOTER
+// =============================================================================
+.footer_section {
+  @extend %full_screen_block;
+  height: 433px;
+  background: {
+    color: $color_dark_surface;
+  }
+  @include flex_positioning(row, center, center);
+
+  .footer_main_container {
+    width: 1215px;
+    height: 241px;
+    @include flex_positioning(row, space-between, center);
+
+    .footer_navigation_grid {
+      width: $width_footer_nav;
+      height: 241px;
+      @include flex_positioning(row, space-between, stretch);
+
+      .footer_column_box {
+        width: 113px;
+        height: 238px;
+        @include flex_positioning(column, space-around, flex-start);
+
+        .footer_column_title {
+          color: $color_text_pure_white;
+          letter-spacing: 0.8px;
+          font: {
+            size: 13px;
+            weight: 500;
+            family: $font_family_site;
+          }
+          text: {
+            transform: uppercase;
+          }
+        }
+
+        .footer_links_list {
+          @extend %clean_list_structure;
+          width: 113px;
+          height: 176px;
+          @include flex_positioning(column, space-around, flex-start);
+
+          .footer_link_item {
+            @extend %interactive_anchor;
+            color: $color_text_graphite;
+            font: {
+              size: 14px;
+              weight: 400;
+              family: $font_family_site;
+            }
+
+            &:hover {
+              color: $color_text_pure_white;
+            }
+          }
+
+          .footer_buy_highlight {
+            @extend %interactive_anchor;
+            color: $color_text_pure_white;
+            font: {
+              size: 13px;
+              weight: 500;
+              family: $font_family_site;
+            }
+
+            &:hover {
+              color: #cccccc;
+            }
+          }
+        }
+      }
+    }
+
+    .footer_newsletter_side {
+      width: $width_footer_subscribe;
+      height: 241px;
+      @include flex_positioning(column, space-around, flex-end);
+
+      .footer_newsletter_title {
+        color: $color_text_pure_white;
+        letter-spacing: 1px;
+        font: {
+          size: 14px;
+          weight: 500;
+          family: $font_family_site;
+        }
+        text: {
+          transform: uppercase;
+        }
+      }
+
+      .footer_subscription_box {
+        width: 366px;
+        height: 68px;
+        @include flex_positioning(column, space-between, flex-end);
+
+        .footer_subscription_caption {
+          color: $color_text_graphite;
+          font: {
+            size: 16px;
+            weight: 300;
+            family: $font_family_site;
+          }
+        }
+
+        .footer_newsletter_form {
+          width: 366px;
+          height: 37px;
+          @include flex_positioning(row, flex-start, stretch);
+
+          .footer_email_input {
+            width: 231px;
+            height: 38px;
+            color: $color_text_pure_white;
+            background: {
+              color: transparent;
+            }
+            border: {
+              width: 0.5px;
+              style: solid;
+              color: $color_text_pure_white;
+            }
+            padding: {
+              left: 10px;
+              right: 10px;
+              top: 8px;
+              bottom: 8px;
+            }
+            font: {
+              size: 13px;
+              family: $font_family_site;
+            }
+
+            &::placeholder {
+              color: #999999;
+            }
+
+            &:focus {
+              outline: none;
+              border: {
+                color: $color_text_light_muted;
+              }
+            }
+          }
+
+          .footer_submit_button {
+            width: 135px;
+            height: 38px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            color: $color_text_graphite;
+            letter-spacing: 1px;
+            background: {
+              color: $color_light_surface;
+            }
+            font: {
+              size: 13px;
+              weight: 600;
+              family: $font_family_site;
+            }
+            text: {
+              transform: uppercase;
+            }
+
+            &:focus,
+            &:active {
+              outline: none;
+              box-shadow: none;
+            }
+          }
+        }
+      }
+
+      .footer_socials_row {
+        width: 200px;
+        height: 26px;
+        @include flex_positioning(row, space-between, flex-end);
+
+        .footer_social_icon_link {
+          @extend %interactive_anchor;
+          display: flex;
+          align-items: center;
+
+          .footer_social_icon_img {
+            height: 18px;
+            width: auto;
+            display: block;
+          }
+        }
+      }
+
+      .footer_copyright_label {
+        color: $color_text_graphite;
+        font: {
+          size: 14px;
+          weight: 400;
+          family: $font_family_site;
+        }
+      }
+    }
+  }
+
+  // Footer Responsive Queries
+  @media (max-width: $breakpoint_wide_desktop) {
+    width: 100%;
+    height: auto;
+    padding: {
+      top: 40px;
+      bottom: 40px;
+      left: 20px;
+      right: 20px;
+    }
+
+    .footer_main_container {
+      width: 100%;
+      height: auto;
+      gap: 30px;
+
+      .footer_navigation_grid {
+        width: 60%;
+      }
+
+      .footer_newsletter_side {
+        width: 35%;
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint_medium_tablet) {
+    .footer_main_container {
+      flex-direction: column;
+      gap: 40px;
+
+      .footer_navigation_grid {
+        width: 100%;
+        height: auto;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .footer_newsletter_side {
+        width: 100%;
+        height: auto;
+        align-items: center;
+        gap: 25px;
+
+        .footer_subscription_box {
+          align-items: center;
+        }
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint_small_phone) {
+    padding: {
+      top: 40px;
+      bottom: 40px;
+      left: 15px;
+      right: 15px;
+    }
+
+    .footer_main_container {
+      .footer_navigation_grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px 15px;
+
+        .footer_column_box {
+          width: 100%;
+          height: auto;
+          gap: 10px;
+
+          .footer_links_list {
+            width: 100%;
+            height: auto;
+            gap: 8px;
+          }
+        }
+      }
+
+      .footer_newsletter_side {
+        .footer_subscription_box {
+          width: 100%;
+          height: auto;
+          gap: 12px;
+
+          .footer_newsletter_form {
+            width: 100%;
+            height: auto;
+            flex-direction: column;
+            gap: 10px;
+
+            .footer_email_input {
+              width: 100%;
+              box-sizing: border-box;
+            }
+
+            .footer_submit_button {
+              width: 100%;
+            }
+          }
+        }
+
+        .footer_socials_row {
+          align-items: center;
+          justify-content: center;
+          gap: 15px;
+        }
+      }
+    }
+  }
+}
